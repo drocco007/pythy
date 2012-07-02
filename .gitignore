@@ -4,3 +4,4 @@ Scripts/
 dist/
 *__pycache__*
 *.pyc
+*.html
