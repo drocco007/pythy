@@ -3,17 +3,28 @@
 pragmatic pytesting
 ===================
 
-:author: Daniel J. Rocco, Ph.D.
+----------------------
+Daniel J. Rocco, Ph.D.
+----------------------
+
+.. :author: Daniel J. Rocco, Ph.D.
+
+----
 
 
 For Those of You Following Along at Home
 ========================================
 
+http://is.gd/pythy
+------------------
+
+----
+
 
 def pytest
 ==========
 
-::
+.. code-block:: python
 
     def pytest():
         """A mature, full-featured python test runner and tool-suite
@@ -26,13 +37,16 @@ def pytest
         pytest.main()
 
 
+----
+
+
 Whetting Your Appetite
 ======================
 
 Simplest Passing Test
 ---------------------
 
-::
+.. code-block:: python
 
     def test_simple_pass():
         """The simplest passing test"""
@@ -49,7 +63,7 @@ Simplest Passing Test
 Simplest Failing Test
 ---------------------
 
-::
+.. code-block:: python
 
     def test_simple_fail():
         assert False
@@ -61,10 +75,13 @@ Simplest Failing Test
 
 
 
+----
+
+
 Exceptions
 ==========
 
-::
+.. code-block:: python
 
     def test_uncaught_exceptions_fail_test():
         open('this is not the file you are looking for...')
@@ -79,10 +96,13 @@ Exceptions
             open('/some/bogus/file.txt')
 
 
+----
+
+
 We Have Liftoff!
 ================
 
-::
+.. code-block:: bash
 
     $ virtualenv my_project
     $ cd my_project ; . bin/activate
@@ -90,10 +110,13 @@ We Have Liftoff!
     $ mkdir my_package ; mkdir tests
 
 
+----
+
+
 Test Layout: Inline
 ===================
 
-::
+.. code-block:: python
 
     def foo():
         pass
@@ -104,10 +127,10 @@ Test Layout: Inline
 
 Special case: doctests!
 
-::
+.. code-block:: python
 
     def foo():
-    	"""Foos
+        """Foos
 
             >>> foo()
             'bar'
@@ -115,22 +138,28 @@ Special case: doctests!
         return 'bar'
 
 
+----
+
+
 Test Layout: Sidecar
 ====================
+
+
+----
 
 
 Test Layout: Quarantine
 =======================
 
-::
+.. code-block:: python
 
     proj/
         package/
             __init__.py
             foo_bar_baz.py
-            …
+            ...
         package2/
-            …
+            ...
         tests/
             test_foo_bar_baz.py
 
