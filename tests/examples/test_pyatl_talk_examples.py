@@ -15,6 +15,13 @@ def test_simple_assertions():
 	assert dict(pytest='awesome')
 
 
+def test_negative_assertions():
+	"""Demonstrates passing tests that use negated assertions"""
+	assert not False
+	assert not []
+	assert not dict()
+
+
 def test_expected_exception():
 	"""Demonstrates pytest's raises context manager"""
 
