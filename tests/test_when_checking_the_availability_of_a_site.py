@@ -1,5 +1,5 @@
 import httplib
-from mock import Mock
+from mock import Mock, DEFAULT
 
 from pyping.model import Monitor
 
@@ -18,9 +18,10 @@ def mock_opener_director(response_code=httplib.OK):
 		>>> httplib.OK == response.code
 		True
 
-		>>> response2 = mock_opener_director(httplib.NOT_FOUND).open('http://localhost/bogus')
-		>>> httplib.NOT_FOUND == response2.code
-		True
+		>>> mock_opener_director(httplib.NOT_FOUND).open('http://localhost/bogus')
+		Traceback (most recent call last):
+		...
+		IOError
 
 	"""
 
@@ -28,7 +29,15 @@ def mock_opener_director(response_code=httplib.OK):
 		code = response_code
 	)
 
-	open = Mock(return_value=mock_response)
+	def _side_effect(*args, **kw):
+		if response_code < 300:
+			return DEFAULT
+		else:
+			error = IOError()
+			error.code = response_code
+			raise error
+
+	open = Mock(return_value=mock_response, side_effect=_side_effect)
 
 	opener_director = Mock(open=open)
 
