@@ -33,12 +33,17 @@ class Response(object):
 
 
 class Monitor(object):
-	def __init__(self, url):
+	open = urlopen
+
+	def __init__(self, url, opener_director=None):
 		self.url = url
+
+		if opener_director:
+			self.open = opener_director.open
 
 	def ping(self):
 		try:
-			url_response = urlopen(self.url)
+			url_response = self.open(self.url)
 			response = Response(response=url_response)
 		except IOError, e:
 			response = Response(exception=e)
