@@ -278,12 +278,77 @@ Presenter notes
 ===============
 
     behavior on: successful response, failed response, successful response
-    with bad text, timeout
+    with good/bad text, timeout
 
 ----
 
 Testability and a Little Dependency Injection
 =============================================
+
+DI pattern core idea: function's dependencies should appear in its signature
+
+    .. code-block:: python
+
+        def dependencies_go(here=True):
+
+            dependencies = not here
+
+Presenter Notes
+===============
+
+core idea: pass function's dependencies to it on call
+
+rationale:
+
+    *   communication: function communicates its dependencies in its
+            signature, rather than having implicit dependencies scattered
+            throughout its implementation
+    *   isolation: DI fn is loosely coupled to the rest of the system: deps
+            flow to it from caller
+    *   testability: much easier to provide alternative test implementations
+            of deps
+
+----
+
+Non-DI Monitor
+==============
+
+.. code-block:: python
+
+    class Monitor(object):
+        def __init__(self, url):
+            self.url = url
+
+        def ping(self):
+            try:
+                url_response = urlopen(self.url)
+                               ^^^^^^^
+                ...
+
+
+
+----
+
+Improving Monitor with DI
+=========================
+
+
+.. code-block:: python
+
+    class Monitor(object):
+        open = urlopen
+
+        def __init__(self, url, opener_director=None):
+            self.url = url
+
+            if opener:
+                self.open = opener.open
+
+
+        def ping(self):
+            try:
+                url_response = open(self.url)
+                ...
 
 ----
 
