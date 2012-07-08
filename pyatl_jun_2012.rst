@@ -336,18 +336,18 @@ Improving Monitor with DI
 .. code-block:: python
 
     class Monitor(object):
-        open = urlopen
+        open = staticmethod(urlopen)
 
         def __init__(self, url, opener_director=None):
             self.url = url
 
-            if opener:
+            if opener_director:
                 self.open = opener.open
 
 
         def ping(self):
             try:
-                url_response = open(self.url)
+                url_response = self.open(self.url)
                 ...
 
 ----
