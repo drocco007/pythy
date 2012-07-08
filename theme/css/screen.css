@@ -271,6 +271,17 @@ body.three-d div.slides {
   -o-transform: translateX(50px) scale(0.8) rotateY(10deg);
 }
 
+/* show title */
+
+.show-title {
+    font-size: 75pt !important;
+    letter-spacing: -0.025em;
+    display: table-cell;
+    vertical-align: bottom;
+    height: 500px;
+    width: 900px;
+    text-shadow: rgba(0, 0, 0, 0.5) 0 2px 5px;
+}
 
 .pull-right {
     display: block;
@@ -351,8 +362,6 @@ a {
   color: inherit;
   display: inline-block;
   text-decoration: none;
-  line-height: 110%;
-  border-bottom: 2px solid #3f3f3f;
 }
 
 pre {
