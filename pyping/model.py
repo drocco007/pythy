@@ -33,7 +33,7 @@ class Response(object):
 
 
 class Monitor(object):
-	open = urlopen
+	open = staticmethod(urlopen)
 
 	def __init__(self, url, opener_director=None):
 		self.url = url
