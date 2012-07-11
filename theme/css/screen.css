@@ -272,6 +272,20 @@ body.three-d div.slides {
 }
 
 
+.pull-right {
+    display: block;
+    float: right;
+    vertical-align: middle;
+    margin: 10px 30px 30px 0;
+}
+    
+img.mat {
+    border: 35px solid white;
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+  box-shadow:         3px 3px 5px 6px #ccc;
+}
+
 /* Content */
 
 header:not(:only-child) {

@@ -400,3 +400,11 @@ Gotcha Covered
 
 ..
 
+
+----
+
+the inevitable question
+=======================
+
+.. class:: mat pull-right
+.. image:: images/nose_fabulous.jpg
