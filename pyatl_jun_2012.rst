@@ -1,6 +1,6 @@
 .. |->| unicode:: U+02192 .. ->
 
-.. class:: show_title
+.. class:: show_title huge
 
 pragmatic pytesting
 
@@ -527,6 +527,12 @@ Gotcha Covered
 
 the inevitable question
 =======================
+
+.. class:: huge nobullets
+
+* the
+* inevitable
+* question
 
 .. class:: mat pull-right
 .. image:: images/nose_fabulous.jpg

@@ -69,6 +69,22 @@ div.slide {
   /*-webkit-border-bottom-left-radius: 20px;*/
 }
 
+
+/* general stuff */
+
+.huge,
+.huge li
+{
+    font-size: 100px !important;
+}
+
+.nobullets li {
+    line-height: 80%;
+    list-style: none;
+    padding: 0;
+}
+
+
 /* Expose */
 
 body.expose div.slides {
