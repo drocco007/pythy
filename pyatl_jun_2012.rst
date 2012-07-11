@@ -525,14 +525,15 @@ Gotcha Covered
 
 ----
 
-the inevitable question
-=======================
+.. class:: row
+..
 
-.. class:: huge nobullets
+        .. class:: huge nobullets pull-left
 
-* the
-* inevitable
-* question
+        * the
+        * inevitable
+        * question
 
-.. class:: mat pull-right
-.. image:: images/nose_fabulous.jpg
+        .. class:: mat  pull-left
+        .. image:: images/nose_fabulous.jpg
+
