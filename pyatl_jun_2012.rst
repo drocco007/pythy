@@ -124,21 +124,29 @@ Expect the Exceptional
 We Have Liftoff!
 ================
 
-Installation:
+.. class:: row
+..
 
-    .. code-block:: bash
+    .. class:: pull-left
+    ..
 
-        $ virtualenv my_project
-        $ cd my_project ; . bin/activate
-        $ pip install pytest pytest-cov mock
-        $ mkdir my_package ; mkdir tests
+        Installation:
 
-Fire it up:
+            .. code-block:: bash
 
-    .. code-block:: bash
+                $ virtualenv my_project
+                $ cd my_project ; . bin/activate
+                $ pip install pytest pytest-cov mock
+                $ mkdir my_package ; mkdir tests
 
-        $ py.test tests/
+        Fire it up:
 
+            .. code-block:: bash
+
+                $ py.test tests/
+
+    .. class:: pull-right mat
+    .. image:: images/rocket.jpg
 
 ----
 
@@ -174,7 +182,7 @@ Inline Special Case: doctests!
             return thing == 'a car'
 
 
-Invoke pytest with the ``--doctest-modules`` switch
+    Invoke pytest with the ``--doctest-modules`` switch
 
 ----
 
@@ -320,6 +328,8 @@ Presenter Notes
 What We Actually Care About
 ===========================
 
+Given a mechanism for opening URLs,
+
 When I check the availability of a given URL,
 
 *   good response (e.g. 200) should yield success response
@@ -424,6 +434,16 @@ Advantages:
     to OpenerDirector's interface
 *   For testing, I can pass mock objects that provide responses mimicking
     real scenarios without actually talking over the network
+
+----
+
+Great!  Er, how does that help?
+===============================
+
+Presenter notes
+===============
+
+.. this section intentionally left (non)blank
 
 ----
 
