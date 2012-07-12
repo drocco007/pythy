@@ -1,6 +1,6 @@
 body {
   /*font: 14px "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;*/
-  font: 14pt "Eras LT Light", sans-serif;
+  font: 24pt "Eras LT Light", sans-serif;
   background: #778;
   padding: 0;
   margin: 0;
@@ -84,11 +84,25 @@ div.slide {
 }
 
 .nobullets li {
-    line-height: 80%;
     list-style: none;
     padding: 0;
 }
 
+.compact {
+    line-height: 80%;
+}
+
+.column {
+    max-width: 350px;
+}
+
+.column.narrow {
+    max-width: 200px;
+}
+
+.column:not(:first-child) {
+    padding-left: 10px;
+}
 
 /* Expose */
 
@@ -258,7 +272,7 @@ div.slide div.presenter_notes, div.slides div.presenter_notes {
 /* Slide styles */
 
 div.slide p {
-  font-size: 20px;
+  font-size: 24pt;
 }
 
 .slide.far-past {
@@ -305,13 +319,11 @@ body.three-d div.slides {
 }
 
 .pull-left {
-    display: table;
     float: left;
     margin: 10px 30px 30px 0;
 }
 
 .pull-right {
-    display: table;
     float: right;
     margin: 10px 30px 30px 0;
 }
@@ -400,13 +412,17 @@ a {
 }
 
 pre {
-  font-size: 16px;
+  font-size: 16pt;
   font-family: Monaco, Courier, monospace;
+}
+
+ul {
+    list-style-type: square;
 }
 
 li {
   padding: 10px 0;
-  font-size: 20px;
+  font-size: 24pt;
 }
 
 .slide header:only-child h1 {

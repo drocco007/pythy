@@ -8,3 +8,6 @@ dist/
 *~
 .coverage
 htmlcov/
+*.orig
+*.egg-info/
+share/

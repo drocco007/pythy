@@ -36,8 +36,6 @@ def pytest
         pytest.main()
 
 
-http://pytest.org
-
 ----
 
 
@@ -120,7 +118,6 @@ Expect the Exceptional
 
 ----
 
-
 We Have Liftoff!
 ================
 
@@ -157,9 +154,10 @@ Test Layout: Module Inline
     .. code-block:: python
 
         def get_random_number():
-            import webbrowser ; webbrowser.open("http://xkcd.com/221/")
+            """Algorithm courtesy of http://xkcd.com/221/"""
 
             return 4
+
 
         def test_get_random_number():
             assert 4 == get_random_number()
@@ -223,8 +221,15 @@ Test Layout: Quarantine
             tests/
                 test_foo_bar_baz.py
 
+            setup.py
+
 *This layout simplifies coverage testing*
 
+
+----
+
+.. image:: images/seal.png
+    :align: center
 
 ----
 
@@ -287,22 +292,18 @@ Our First Test Run
             assert response
             assert httplib.OK == response.response_code
 
-NB: for this to work, you need a running web server, e.g.:
+    NB: for this to work, you need a running web server:
 
-    .. code-block:: bash
+        ::
 
-        $ python -m SimpleHTTPServer
+            $ python -m SimpleHTTPServer
 
+    which lets us know that we have
 
 ----
 
 Problems
 ========
-
-::
-
-    monitor('http://google.com')
-
 
 ----
 
@@ -449,6 +450,30 @@ Presenter notes
 
 ----
 
+``old_dog.tricks.append(...)``
+==============================
+
+.. code-block:: python
+
+    # Basic HTTP Auth
+    auth_handler = urllib2.HTTPBasicAuthHandler()
+    auth_handler.add_password(...)
+    opener = urllib2.build_opener(auth_handler)
+
+    Monitor('http://super.secret.com', opener)
+
+
+
+    # Custom user agent
+    opener = urllib2.build_opener()
+    opener.addheaders = [('User-agent', 'Mozilla/5.0')]
+
+    Monitor('http://abolish-all-robots.org', opener)
+
+
+
+----
+
 Don't Mock Me
 =============
 
@@ -463,7 +488,7 @@ Mock instances are callable:
         >>> mock_fn()
         42
 
-They provided useful information to your tests:
+They provide useful information to your tests:
 
     .. code-block:: python
 
@@ -491,11 +516,19 @@ object mocking trivial:
 
 ----
 
-Mocking OpenerDirector
-======================
+Mocking ``build_opener``
+========================
+
+OpenerDirector's ``open`` method |->| response object
+
+``response.code`` |->| HTTP status
 
 
-OpenerDirector
+----
+
+Mocking ``build_opener``
+========================
+
     .. code-block:: python
 
         def mock_opener_director(response_code=httplib.OK):
@@ -514,35 +547,124 @@ OpenerDirector
 Success
 =======
 
-..
+    .. code-block:: python
+
+        def test_valid_local_http_response_should_yield_positive():
+            opener_director = mock_opener_director()
+            url = 'http://localhost:8000'
+            monitor = Monitor(url, opener_director=opener_director)
+
+            response = monitor.ping()
+
+            opener_director.open.assert_called_once_with(url)
+
+            assert response
+            assert httplib.OK == response.response_code
 
 ----
 
 Failure
 =======
 
-..
+Or, rather, failing to fail...
+
+    ::
+
+        def test_not_found_should_yield_negative():
+            opener_director = mock_opener_director(
+                                  response_code=httplib.NOT_FOUND
+                              )
+            monitor = Monitor('http://localhost:8000/404.html',
+                              opener_director=opener_director)
+            response = monitor.ping()
+
+        >       assert not response
+        E    assert not <pyping.model.Response object at 0x...>
 
 ----
 
-Timeout
-=======
+How does this thing work again?
+===============================
 
+    .. code-block:: python
+
+        def mock_opener_director(response_code=httplib.OK):
+            mock_response = Mock(code=response_code)
+
+            open = Mock(return_value=mock_response)
+            ...
+
+.. class:: row
 ..
+
+    .. class:: mat pull-left
+    .. image:: images/head_scratcher.jpg
+
+    .. class:: narrow column pull-right
+    ..
+
+        Wait, that isn't right!
+
+        What about a ``response_code`` that's an error?
 
 ----
 
-New Feature: Desired Text
-=========================
+For realz this time
+===================
 
-..
+    .. code-block:: python
+
+        def mock_opener_director(response_code=httplib.OK):
+            mock_response = Mock(code=response_code)
+
+            def _side_effect(*args, **kw):
+                if response_code < 300:
+                    return DEFAULT
+                else:
+                    error = IOError()
+                    error.code = response_code
+                    raise error
+
+            open = Mock(return_value=mock_response,
+                        side_effect=_side_effect)
+
+            opener_director = Mock(open=open)
+
+            return opener_director
 
 ----
 
-Gotcha Covered
-==============
+Other goodies
+=============
 
+.. class:: row
 ..
+
+    .. class:: column nobullets pull-left
+
+    *   stop after the first failure::
+
+        $ py.test -x ...
+
+    *   fire up ye olde debugger on failure::
+
+        $ py.test --pdb ...
+
+
+    .. class:: column nobullets pull-left
+
+    *   suppress output capture::
+
+        $ py.test -s ...
+
+
+    *   gotcha covered:
+
+        .. code-block:: bash
+
+            $ py.test --cov pyping \
+                      --cov-report=html \
+                      tests/
 
 
 ----
@@ -550,12 +672,17 @@ Gotcha Covered
 .. class:: row
 ..
 
-        .. class:: huge nobullets pull-left
+        .. class:: huge nobullets pull-left compact
 
         * the
         * inevitable
         * question
 
-        .. class:: mat  pull-left
+        .. class:: mat pull-left
         .. image:: images/nose_fabulous.jpg
 
+
+----
+
+``import sys; sys.exit()``
+==========================
