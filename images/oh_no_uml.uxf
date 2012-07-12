@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="11.5.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>10</x>
+      <y>0</y>
+      <w>240</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>Monitor
+--
+url : str
+--
+ping() : Response 
+--
+Responsibilities
+- fetch url
+- create Response
+ 
+  'WTF! 01 PC Load Ltr!?'
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>0</x>
+      <y>280</y>
+      <w>260</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>
+Hub
+--
+monitor : [ ]
+oberservers : [ fn(response), ... ]
+--
+one()
+run()
+--
+Responsibilities
+
+- coordinate pinging
+- notify observers
+ 
+  'I HAVE PEOPLE SKILLS!'</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>340</x>
+      <y>0</y>
+      <w>240</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>Response
+--
+created : datetime
+ 
+@prop 
+response_code : int/reason
+--
+ 
+--
+Responsibilities
+- abstraction around urlopen's 
+  various response types
+ 
+ 'Why do you say there is paper
+  jam when there is no paper
+  jam?!?'</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>100</x>
+      <y>180</y>
+      <w>50</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=  *
+m2=  1
+</panel_attributes>
+    <additional_attributes>30;30;30;100</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>220</x>
+      <y>10</y>
+      <w>140</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=   *
+m2=  1
+</panel_attributes>
+    <additional_attributes>120;30;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Text</type>
+    <coordinates>
+      <x>400</x>
+      <y>400</y>
+      <w>180</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>/'Oh No! UML!'/
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Text</type>
+    <coordinates>
+      <x>400</x>
+      <y>460</y>
+      <w>180</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>/'HEY! Who let the Java/
+/ guy into our meeting?!'/
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

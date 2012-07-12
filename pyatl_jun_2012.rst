@@ -244,7 +244,9 @@ Wormly clone; basic requirements:
 "It's Only a Model"
 ===================
 
-..
+    .. class:: mat
+    .. image:: images/oh_no_uml.png
+        :align: center
 
 
 ----
