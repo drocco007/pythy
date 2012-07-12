@@ -6,6 +6,8 @@ xor = lambda a, b: bool(a) ^ bool(b)
 
 
 class Response(object):
+	"""Abstraction around urlopen's various response types"""
+
 	exception = None
 	response = None
 
